@@ -33,7 +33,7 @@ app.post('/upload',
   }
 );
 
-app.listen(3001, () => console.log("Server running on port 3000..."));
+app.listen(3000, () => console.log("Server running on port 3000..."));
 
 /*
 {
@@ -128,5 +128,5 @@ app.listen(3001, () => console.log("Server running on port 3000..."));
     { sem: 3, branch: 'ME', slot: 'A', subcode: 'MAT201' },
     { sem: 3, branch: 'CE', slot: 'A', subcode: 'MAT201' }
   ]
-
+}
 */
