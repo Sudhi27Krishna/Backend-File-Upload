@@ -4,7 +4,8 @@ const path = require('path');
 const filePayloadExists = require('./middlewares/filePayloadExists');
 const fileExtLimiter = require('./middlewares/fileExtLimiter');
 const fileSizeLimiter = require('./middlewares/fileSizeLimiter');
-const manipulate = require('./manipulate');
+const createBranches = require('./createBranches');
+const totalCount = require('./totalCount');
 const app = express();
 
 app.get('/', (req, res) => {
@@ -16,7 +17,7 @@ app.post('/upload',
   filePayloadExists,
   fileExtLimiter([".xlsx"]),
   fileSizeLimiter,
-  (req, res) => {
+  async (req, res) => {
     const files = req.files
     console.log(files)
 
@@ -27,7 +28,12 @@ app.post('/upload',
       })
     })
 
-    manipulate();
+    try {
+      await createBranches();
+      await totalCount();
+    } catch (error) {
+      console.log(error);
+    }
 
     return res.json({ status: 'success', message: Object.keys(files).toString() });
   }
@@ -123,6 +129,40 @@ app.listen(3000, () => console.log("Server running on port 3000..."));
     { sem: 3, branch: 'EC', slot: 'A', subcode: 'MAT201' },
     { sem: 3, branch: 'ME', slot: 'A', subcode: 'MAT201' },
     { sem: 3, branch: 'CE', slot: 'A', subcode: 'MAT201' }
+  ]
+}
+
+
+{
+  "date": "31-05-2023",
+  "time": "FN",
+  "rooms": [
+    { "room_no": 'M111', "capacity": 30 },
+    { "room_no": 'M105', "capacity": 30 },
+    { "room_no": 'M113', "capacity": 30 },
+    { "room_no": 'M204', "capacity": 30 },
+    { "room_no": 'M205', "capacity": 30 },
+    { "room_no": 'M207', "capacity": 30 },
+    { "room_no": 'M209', "capacity": 30 },
+    { "room_no": 'M213', "capacity": 30 },
+    { "room_no": '209', "capacity": 30 },
+    { "room_no": '211', "capacity": 30 },
+    { "room_no": '401', "capacity": 30 },
+    { "room_no": '404', "capacity": 30 },
+    { "room_no": '502', "capacity": 30 },
+    { "room_no": '503', "capacity": 30 },
+    { "room_no": '505', "capacity": 30 },
+    { "room_no": '506', ""capacity"": 30 },
+    { "room_no": '212', "capacity": 30 }
+  ],
+  "details": [
+    { "sem": 3, "branch": 'CS', "slot": 'A', "subcode": 'MAT203' },
+    { "sem": 3, "branch": 'CA', "slot": 'A', "subcode": 'MAT203' },
+    { "sem": 3, "branch": 'AD', "slot": 'A', "subcode": 'MAT203' },
+    { "sem": 3, "branch": 'EE', "slot": 'A', "subcode": 'MAT201' },
+    { "sem": 3, "branch": 'EC', "slot": 'A', "subcode": 'MAT201' },
+    { "sem": 3, "branch": 'ME', "slot": 'A', "subcode": 'MAT201' },
+    { "sem": 3, "branch": 'CE', "slot": 'A', "subcode": 'MAT201' }
   ]
 }
 */
