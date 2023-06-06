@@ -4,13 +4,13 @@ from openpyxl import Workbook
 import sys
 import json
 
-#ACCEPT JSOM DATA FROM COMMAND-LINE ARGUMENTS
+# ACCEPT JSOM DATA FROM COMMAND-LINE ARGUMENTS
 data_json = sys.argv[1]
 data = json.loads(data_json)
 
 for sem in data:
     # LOADING MAIN EXCEL SHEET
-    # wb = openpyxl.load_workbook('./uploadedExcels/arjun-miniproject.xlsx')  
+    # wb = openpyxl.load_workbook('./uploadedExcels/arjun-miniproject.xlsx')
     wb = openpyxl.load_workbook('.\\uploadedExcels\\'+sem)
     sheetname = wb.sheetnames
     ws = wb[sheetname[0]]
@@ -38,9 +38,12 @@ for sem in data:
                 regno = nm[-11:-1:1]
                 ws_branchMain.cell(row=r, column=1).value = nm
                 ws_branchMain.cell(row=r, column=2).value = regno
-                ws_branchMain.cell(row=r, column=3).value = ws.cell(row=p, column=2).value
-                ws_branchMain.cell(row=r, column=4).value = ws.cell(row=p, column=4).value
-                ws_branchMain.cell(row=r, column=5).value = ws.cell(row=p, column=5).value[-9:-3:1]
+                ws_branchMain.cell(row=r, column=3).value = ws.cell(
+                    row=p, column=2).value
+                ws_branchMain.cell(row=r, column=4).value = ws.cell(
+                    row=p, column=4).value
+                ws_branchMain.cell(row=r, column=5).value = ws.cell(
+                    row=p, column=5).value[-9:-3:1]
                 r += 1
         codeno = regno[5:7]
         # print(ws_branchMain.max_row,codeno)
@@ -75,7 +78,8 @@ for sem in data:
             print(slot)
             for p in range(1, wb_branchMain.max_row+1):
                 if (wb_branchMain.cell(row=p, column=4).value == slot):
-                    year_set.add(wb_branchMain.cell(row=p, column=2).value[3:5])
+                    year_set.add(wb_branchMain.cell(
+                        row=p, column=2).value[3:5])
 
             year_list = list(year_set)
             year_list.sort()

@@ -4,7 +4,7 @@ from openpyxl import Workbook
 import sys
 import json
 
-#ACCEPT JSOM DATA FROM COMMAND-LINE ARGUMENTS
+# ACCEPT JSOM DATA FROM COMMAND-LINE ARGUMENTS
 data_json = sys.argv[1]
 data = json.loads(data_json)
 
@@ -36,11 +36,12 @@ for i in slot_list:
     for i in range(len(details)):
         if (details[i].get("slot") == input_slot):
             code_list.append(details[i].get("branch"))
-    print(code_list)    
-    s=details[0].get("sem")    
+    print(code_list)
+    s = details[0].get("sem")
     for code in code_list:
         check_supply = 1
-        wb_branch = openpyxl.load_workbook('.\\updatedExcels\\'+'S'+str(s)+'_'+code+'.xlsx')
+        wb_branch = openpyxl.load_workbook(
+            '.\\updatedExcels\\'+'S'+str(s)+'_'+code+'.xlsx')
         ws_branch_reg = wb_branch[input_slot]
         # CHECKING IF THERE IS SUPPLY STUDENTS OR NOT
         try:
@@ -102,7 +103,7 @@ for i in slot_list:
             p = 16
         else:
             p = 1
-        # print(sh_nm[j]+"  "+str(room_sheet.max_row))    
+        # print(sh_nm[j]+"  "+str(room_sheet.max_row))
         j = (ch) % max_sheets
         # wb_slot.save('.\\updatedExcels\\'+date+'_'+time+'.xlsx')
     wb_slot.save('.\\updatedExcels\\'+date+'_'+time+'.xlsx')
@@ -220,7 +221,7 @@ for i in slot_list:
             room_sheet.cell(row=r, column=1).value = i
             r += 1
         for i in range(len(rooms)):
-            if ((room_sheet.max_row <= rooms[i].get("capacity")) ):
+            if ((room_sheet.max_row <= rooms[i].get("capacity"))):
                 room_sheet.title = rooms[i].get("room_no")
                 # print(rooms[i].get("room_no"))
                 del rooms[i]

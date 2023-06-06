@@ -33,8 +33,8 @@ app.post('/upload',
 
     try {
       await createBranches(Object.keys(files));
-      await arrangeMan();
       await totalCount();
+      await arrangeMan();
     } catch (error) {
       console.log(error);
     }

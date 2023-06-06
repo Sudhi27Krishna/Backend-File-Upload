@@ -6,6 +6,7 @@ data_json = sys.argv[1]
 data = json.loads(data_json)
 
 details = data['details']
+sem = details[0].get("sem")
 s = set()
 for i in range(len(details)):
     s.add(details[i].get("slot"))
@@ -20,10 +21,11 @@ for i in slot_list:
         if details[i].get("slot") == input_slot:
             code_list.append(details[i].get("branch"))
 
-    print(code_list)
+    # print(code_list)
     for code in code_list:
         check_supply = 1
-        wb_branch = openpyxl.load_workbook('.\\updatedExcels\\'+code+'.xlsx')
+        wb_branch = openpyxl.load_workbook(
+            '.\\updatedExcels\\S'+str(sem)+'_'+code+'.xlsx')
         ws_branch_reg = wb_branch[input_slot]
         # CHECKING IF THERE IS SUPPLY STUDENTS OR NOT
         try:
@@ -39,4 +41,4 @@ for i in slot_list:
                 noOfStudents += 1
 
 # NO: OF STUDENTS WRITING EXAM FOR A PARTICULAR SLOT
-print("No: of students for "+str(input_slot)+" :"+str(noOfStudents))
+print(noOfStudents)

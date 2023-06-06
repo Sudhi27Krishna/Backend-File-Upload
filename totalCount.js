@@ -2,10 +2,13 @@ const { spawn } = require('node:child_process');
 
 const data = {
     details: [
-        { sem: 3, branch: 'EE', slot: 'B', subcode: 'EET201' },
-        { sem: 3, branch: 'EC', slot: 'B', subcode: 'ECT201' },
-        { sem: 3, branch: 'ME', slot: 'B', subcode: 'MET201' },
-        { sem: 3, branch: 'CE', slot: 'B', subcode: 'CET201' }
+        { sem: 3, branch: 'CS', slot: 'A', subcode: 'MAT203' },
+        { sem: 3, branch: 'CA', slot: 'A', subcode: 'MAT203' },
+        { sem: 3, branch: 'AD', slot: 'A', subcode: 'MAT203' },
+        { sem: 3, branch: 'EE', slot: 'A', subcode: 'MAT201' },
+        { sem: 3, branch: 'EC', slot: 'A', subcode: 'MAT201' },
+        { sem: 3, branch: 'ME', slot: 'A', subcode: 'MAT201' },
+        { sem: 3, branch: 'CE', slot: 'A', subcode: 'MAT201' }
     ]
 };
 
