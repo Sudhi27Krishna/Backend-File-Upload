@@ -1,3 +1,5 @@
+//  // manipulate(Object.keys(files));   // create createbranch.js
+//  arrangeMan(); // room arrangement
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const path = require('path');
@@ -5,6 +7,7 @@ const filePayloadExists = require('./middlewares/filePayloadExists');
 const fileExtLimiter = require('./middlewares/fileExtLimiter');
 const fileSizeLimiter = require('./middlewares/fileSizeLimiter');
 const createBranches = require('./createBranches');
+const arrangeMan = require('./arrangeMan');
 const totalCount = require('./totalCount');
 const app = express();
 
@@ -29,7 +32,8 @@ app.post('/upload',
     })
 
     try {
-      await createBranches();
+      await createBranches(Object.keys(files));
+      await arrangeMan();
       await totalCount();
     } catch (error) {
       console.log(error);
