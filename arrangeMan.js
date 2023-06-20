@@ -1,7 +1,7 @@
 const { spawn } = require('node:child_process');
 
 const data = {
-  date: '31-05-2023',
+  date: '30-06-2023',
   time: 'FN',
   rooms: [
     { room_no: 'M111', capacity: 30 },
